@@ -1,0 +1,116 @@
+[
+    {
+        name: '部门管理',
+        thumb: 'sink.png',
+        url: 'kitchensink',
+        type: 'Application'
+    },
+    {
+        name: '员工管理',
+        thumb: 'twitter.png',
+        url: 'twitter',
+        type: 'Application'
+    },
+    {
+        name: '角色管理',
+        thumb: 'kiva.png',
+        url: 'kiva',
+        type: 'Application'
+    },
+    {
+        name: '操作管理',
+        thumb: 'geocongress.png',
+        url: 'geocongress',
+        type: 'Application'
+    },
+    {
+        name: '黄页客户',
+        thumb: 'ajax.png',
+        url: 'ajax',
+        type: 'Example'
+    },
+    {
+        name: '公共客户',
+        thumb: 'carousel.png',
+        url: 'carousel',
+        type: 'Example'
+    },
+    {
+        name: '我的客户',
+        thumb: 'DnD.png',
+        url: 'dragdrop',
+        type: 'Example'
+    },
+    {
+        name: '共享客户',
+        thumb: 'forms.png',
+        url: 'forms',
+        type: 'Example'
+    },
+    {
+        name: '图标管理',
+        thumb: 'guide.png',
+        url: 'guide',
+        type: 'Example'
+    },
+    {
+        name: '工作台',
+        thumb: 'icons.png',
+        url: 'icons',
+        type: 'Example'
+    },
+    {
+        name: '商机管理',
+        thumb: 'map.png',
+        url: 'map',
+        type: 'Example'
+    },
+    {
+        name: '地图管理',
+        thumb: 'nestedList.png',
+        url: 'nestedlist',
+        type: 'Example'
+    },
+    {
+        name: '客户分布',
+        thumb: 'overlays.png',
+        url: 'overlays',
+        type: 'Example'
+    },
+    {
+        name: '项目分布',
+        thumb: 'picker.png',
+        url: 'picker',
+        type: 'Example'
+    },
+    {
+        name: '移动设备',
+        thumb: 'sortable.png',
+        url: 'sortable',
+        type: 'Example'
+    },
+    {
+        name: '系统监控',
+        thumb: 'tabs.png',
+        url: 'tabs',
+        type: 'Example'
+    },
+    {
+        name: '菜单管理',
+        thumb: 'tabs2.png',
+        url: 'tabs2',
+        type: 'Example'
+    },
+    {
+        name: '模块分隔',
+        thumb: 'toolbars.png',
+        url: 'toolbars',
+        type: 'Example'
+    },
+    {
+        name: '数据库管理',
+        thumb: 'yql.png',
+        url: 'yql',
+        type: 'Example'
+    }
+]

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title id="mainTitle">35CRM-专业CRM 服务平台</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="public/uploadPanel/swfupload.js"></script>
+    <script src="http://static.xiaoshouwuyou.com/ext/ext-all.js"></script>
+    <link rel="stylesheet" type="text/css" href="res/portal/portal.css" /><!-- 必须放到最前面-->
+    <link rel="stylesheet" type="text/css" href="res/calendar/resources/css/calendar.css" />
+    <link rel="stylesheet" href="http://static.xiaoshouwuyou.com/ext/resources/wcb-theme-blue/wcb-theme-blue-all.css">
+    <script src="http://static.xiaoshouwuyou.com/ext/locale/ext-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="http://static.xiaoshouwuyou.com/echarts/echarts.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="res/shared/example.css" />
+    <link rel="stylesheet" type="text/css" href="res/ux/css/ItemSelector.css" />
+    <link rel="stylesheet" href="http://static.xiaoshouwuyou.com/ext/static/css/app.css">
+    <link rel="stylesheet" id="link_skin" href="http://static.xiaoshouwuyou.com/ext/resources/wcb-theme-blue/css/style.css">
+    <link rel="stylesheet" href="http://static.xiaoshouwuyou.com/ext/static/css/icons.css" >
+    <script type="text/javascript" src="res/shared/examples.js"></script>
+    <script src="admin/util/MessageUtil.js" type="text/javascript"></script>
+    <script src="Util/ModelFactory.js" type="text/javascript"></script>
+    <script src="Util/CountryProvinceCityFactory.js" type="text/javascript"></script>
+    <script src="Util/ConfigParamsFactory.js" type="text/javascript"></script>
+    <script src="Util/Override.js" type="text/javascript"></script>
+    <script type="text/javascript" src="user/app.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=BCb2b0fd0b1a92d48db035a4bc1d1629"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+    <style type="text/css">
+        .x-table-layout td.x-table-layout-cell {
+            padding:2px;
+        }
+        .task .x-grid-cell-inner {
+            padding-left: 15px;
+        }
+        .x-grid-row-summary .x-grid-cell-inner {
+            font-weight: ;
+        }
+        .qipao {
+            display: inline-block;
+            width: 26px;
+            height: 15px;
+            text-align: center;
+            background-image: url(qipao.png);
+            background-repeat: no-repeat;
+            font-size: 7px;
+            color: #fff;
+            top: -1px;
+            font-family: sans-serif;
+            font-weight: normal;
+            float: right;
+            text-align: center;
+        }
+        #schedulePlanMain-app-center .x-panel-header {
+            font-size: 13px;
+            text-align: center;
+            padding-left: 178px;
+            font-family: helvetica, arial, sans-serif;
+            color: #455C6F;
+        }
+        #scheduleSummaryMain-app-center .x-panel-header {
+            font-size: 13px;
+            text-align: center;
+            padding-left: 178px;
+            font-family: helvetica, arial, sans-serif;
+            color: #455C6F;
+        }
+    </style>
+    <script language="JavaScript">
+        Ext.onReady(function() {
+            w = new Ext.create('Ext.window.Window', {
+                closable:false,
+                title:'提示',
+                items: {
+                    xtype: 'progressbar',
+                    width: 300,
+                    listeners: {
+                        beforerender: function (prog) {
+                            this.wait({
+                                interval: 500,
+                                increment: 15,
+                                text: '正在为您加载资源文件，请稍后......'
+                            });
+                        }
+                    }
+                }
+            });
+            w.show();
+
+            var me = this;
+            var refreshModules = me.moduleVersion();
+            var refreshSize = refreshModules.length;
+            var process;
+            if(refreshSize > 0){
+                Ext.defer(function() {
+                    var progress = Ext.Msg.show({
+                        title: "提示",
+                        msg: "正在加载自定义配置，请稍后...",
+                        width: 300,
+                        wait: true
+                    }, 2000);
+                    Ext.Array.each(refreshModules, function (moduleId, index, itSelf) {
+                        Ext.defer(function () {
+                            var curnum = (index + 1) / refreshSize;
+                            progress.updateProgress(curnum, Math.round(index / refreshSize * 100) + "%");
+                            me.refreshModule(moduleId);
+                            if ((index + 1) == refreshSize) {
+                                progress.hide();
+                            }
+                        }, 5)
+                    });
+                },500);
+            }
+        });
+
+        function getModuleVersion(moduleId){
+            var versions = window.localStorage.getItem("moduleVersions");
+            var version;
+            if(versions) {
+                var mv = Ext.JSON.decode(versions);
+                mv.forEach(function (obj) {
+                    if (obj.moduleId == moduleId) {
+                        version = obj.version;
+                    }
+                });
+            }
+            return version;
+        }
+        function moduleVersion(){
+            var me = this,refreshModules=[];
+            Ext.Ajax.request({
+                url:"model/moduleVersion",
+                method:'POST',
+                async:false,
+                timeout:20000,
+                success:function(response,opts){
+                    var d = Ext.JSON.decode(response.responseText);
+                    if(d.success){
+                        d.data.forEach(function(obj){
+                            var ov = getModuleVersion(obj.moduleId),
+                                    nv = obj.version;
+                            if(ov != nv){
+                                //me.refreshModule(obj.moduleId);
+                                refreshModules.push(obj.moduleId);
+                            }
+                        });
+                        window.localStorage.setItem("moduleVersions",Ext.JSON.encode(d.data));
+                    }
+                },failure:function(response, opts){
+                    var errorCode = "";
+                    if(response.status){
+                        errorCode = 'error:'+response.status;
+                    }
+                    console.info("���ذ汾��Ϣʧ��");
+                }
+            });
+            return refreshModules;
+        }
+        function refreshModule(moduleId){
+            Ext.Ajax.request({
+                url:"model/pc",
+                params:{moduleId:moduleId},
+                method:'POST',
+                async:false,
+                timeout:20000,
+                success:function(response,opts){
+                    var d = Ext.JSON.decode(response.responseText);
+                    if(d.success && d.data){
+                        var fields = d.data.fields,
+                                views = d.data.views;
+                        if(fields && fields.length > 0) {
+                            window.localStorage.setItem("model-" + moduleId, Ext.JSON.encode(fields));
+                        }
+                        if(views) {
+                            Ext.Object.each(views, function(viewId, value, myself) {
+                                window.localStorage.setItem(viewId, Ext.JSON.encode(value));
+                            });
+                        }
+                    }
+                },failure:function(response, opts){
+                    var errorCode = "";
+                    if(response.status){
+                        errorCode = 'error:'+response.status;
+                    }
+                    console.info("锟斤拷锟截版本锟斤拷息失锟斤拷");
+                }
+            });
+            return;
+        }
+
+        var UnloadConfirm = {};
+        UnloadConfirm.MSG_UNLOAD = "";
+        UnloadConfirm.UNLOAD_FLAG = 1;
+        UnloadConfirm.set = function(a,unloadFlag) {
+            window.onbeforeunload = function(b) {
+                if(unloadFlag == 1){
+                    b = b || window.event;
+                    b.returnValue = a;
+                    return a;
+                }
+            };
+        };
+        UnloadConfirm.clear = function() {
+            window.onbeforeunload = function() {}
+        };
+        UnloadConfirm.set(UnloadConfirm.MSG_UNLOAD,UnloadConfirm.UNLOAD_FLAG);
+    </script>
+</head>
+<body>
+</body>
+</html>

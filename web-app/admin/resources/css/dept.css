@@ -1,0 +1,100 @@
+.dept_table{
+    background-image: url(../img/dept_table.png) !important;
+}
+.dept_tree{
+    background-image: url(../img/dept_tree.png) !important;
+}
+.table_remove{
+	background-image: url(../img/table_remove.gif) !important;
+}
+.table_add{
+	background-image: url(../img/table_add.png) !important;
+}
+.table_view{
+	background-image: url(../img/table_view.png) !important;
+}
+.table_save{
+	background-image: url(../img/table_save.png) !important;
+}
+.customer{
+	background-image: url(../img/admin_icon_01.png) !important;	background-repeat: no-repeat;
+
+}
+.contact{
+	background-image: url(../img/admin_icon_02.png) !important;	background-repeat: no-repeat;
+}
+.customer_follow{
+	background-image: url(../img/admin_icon_03.png) !important;	background-repeat: no-repeat;
+}
+.outsite_record{
+	background-image: url(../img/admin_icon_04.png) !important;	background-repeat: no-repeat;
+}
+.onsite_object{
+	background-image: url(../img/admin_icon_05.png) !important;	background-repeat: no-repeat;
+}
+.object_follow{
+	background-image: url(../img/admin_icon_06.png) !important;	background-repeat: no-repeat;
+}
+.service_task{
+	background-image: url(../img/admin_icon_07.png) !important;	background-repeat: no-repeat;
+}
+.product_kind{
+	background-image: url(../img/admin_icon_08.png) !important;	background-repeat: no-repeat;
+}
+.product{
+	background-image: url(../img/admin_icon_09.png) !important;	background-repeat: no-repeat;
+}
+.plan_summary{
+	background-image: url(../img/admin_icon_10.png) !important;	background-repeat: no-repeat;
+}
+.task_assigned{
+	background-image: url(../img/admin_icon_11.png) !important;	background-repeat: no-repeat;
+}
+.work_audit{
+	background-image: url(../img/admin_icon_12.png) !important;	background-repeat: no-repeat;
+}
+.audit_opinion{
+	background-image: url(../img/admin_icon_13.png) !important;	background-repeat: no-repeat;
+}
+.attendance{
+	background-image: url(../img/admin_icon_14.png) !important;	background-repeat: no-repeat;
+}
+.leave_apply{
+	background-image: url(../img/admin_icon_15.png) !important;	background-repeat: no-repeat;
+}
+.business_trip_apply{
+	background-image: url(../img/admin_icon_16.png) !important;	background-repeat: no-repeat;
+}
+.overtime_apply{
+	background-image: url(../img/admin_icon_17.png) !important;	background-repeat: no-repeat;
+}
+.goout_apply{
+	background-image: url(../img/admin_icon_18.png) !important;	background-repeat: no-repeat;
+}
+.data_object{
+	background-image: url(../img/admin_icon_19.png) !important;	background-repeat: no-repeat;
+}
+.data_object_detail{
+	background-image: url(../img/admin_icon_20.png) !important;	background-repeat: no-repeat;
+}
+.employee{
+	background-image: url(../img/admin_icon_21.png) !important;	background-repeat: no-repeat;
+}
+.dept{
+	background-image: url(../img/admin_icon_22.png) !important;	background-repeat: no-repeat;
+}
+.privilege{
+	background-image: url(../img/admin_icon_23.png) !important;	background-repeat: no-repeat;
+}
+.base_dicty{
+	background-image: url(../img/admin_icon_24.png) !important;	background-repeat: no-repeat;
+}
+.dict_item{
+	background-image: url(../img/admin_icon_25.png) !important;	background-repeat: no-repeat;
+}
+.folder_close{
+	background-image: url(../img/folder_close.png) !important;	background-repeat: no-repeat;
+}
+.folder_open{
+	background-image: url(../img/folder_open.png) !important;	background-repeat: no-repeat;
+}
